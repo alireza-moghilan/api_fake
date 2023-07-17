@@ -1,0 +1,31 @@
+body {
+    direction: ltr;
+}
+.img_box {
+    height: 234px;
+    object-fit: cover;
+}
+* {
+    list-style: none;
+    text-decoration: none !important;
+}
+ul>li {
+    list-style: circle !important;
+}
+.pagination>li {
+    list-style: none !important;
+}
+.pagination>li {
+    cursor: pointer;
+}
+/* .active {
+    background-color: rgb(255,193,7);
+} */
+.active>.page-link, .page-link.active {
+    color: #ffffff !important;
+    background-color: rgb(255,193,7) !important;
+    border-color: rgb(255,193,7) !important;
+}
+.page-link {
+    color: #000 !important;
+}
