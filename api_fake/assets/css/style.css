@@ -29,3 +29,6 @@ ul>li {
 .page-link {
     color: #000 !important;
 }
+.nav-item {
+    list-style: none !important;
+}
