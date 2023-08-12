@@ -1,5 +1,7 @@
 // url
-const url = 'https://randomuser.me/api/?results=55';
+const url = 'https://randomuser.me/api/?results=50';
+// pagination
+
 const page = {
     postPerPage: 9,
     currentPage: 1,
@@ -16,18 +18,21 @@ ajax.onreadystatechange = function (ev) {
         let res = this.responseText;
         res = JSON.parse(res);
         page.results = res.results;
-        // console.log(page.results);
+        console.log(page.results);
 
         const loadPage = function (ev) {
             page.currentPage = ev;
 
-            let startPost = (page.currentPage - 1) * page.postPerPage;
-            let totalPage = Math.ceil(page.results.length / page.postPerPage);
-            let endPost = startPost + page.postPerPage > page.results.length ? page.results.length : startPost + page.postPerPage;
+            // Variable
+            let startPost, totalPage, endPost, pagination;
+
+            startPost = (page.currentPage - 1) * page.postPerPage;
+            totalPage = Math.ceil(page.results.length / page.postPerPage);
+            endPost = startPost + page.postPerPage > page.results.length ? page.results.length : startPost + page.postPerPage;
             // console.log("startPost:  " + startPost);
 
             // pagination
-            let pagination = document.querySelector(".pagination");
+            pagination = document.querySelector(".pagination");
             // 
             pagination.innerHTML = "";
 
@@ -71,23 +76,26 @@ ajax.onreadystatechange = function (ev) {
                 // The results are in array format
                 let item = results[index];
 
+                // Variable
+                let img, name, registered, email, phone;
+
                 // img box
-                let img = item['picture'];
+                img = item['picture'];
                 img = img['large'];
 
                 //name
-                let name = item['name'];
+                name = item['name'];
                 name = name['first'] + "  " + name["last"];
 
                 //age
-                let registered = item['registered'];
+                registered = item['registered'];
                 registered = registered['age'];
 
                 //email
-                let email = item['email'];
+                email = item['email'];
 
                 //phone
-                let phone = item['phone'];
+                phone = item['phone'];
 
                 // spilling info in html
                 data.innerHTML += `
@@ -118,7 +126,7 @@ ajax.onreadystatechange = function (ev) {
         loadPage(1);
     }
     else {
-        let data = document.getElementById('data');
+        data = document.getElementById('data');
         // data.innerHTML = "<h5 class='h3 text-center'>یافت نشد</h5>";
     }
 }
